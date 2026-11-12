@@ -13,7 +13,7 @@ bool strcmp(char *str1, char *str2);
 void putchar(char ch);
 
 void main(void) {
-	print("Welcome to ");
+	print("Welcome to ")
 	set_text_color("red");
     print("A");
 	set_text_color("cyan");
@@ -79,10 +79,12 @@ void set_text_color(char *color){
 }
 
 bool strcmp(char *str1, char *str2){
-	for (int i = 0; str1[i] != 0 && str2[i] != 0; i++){
+	int i = 0;
+	while (str1[i] != 0 && str2[i] != 0){
 		if (str1[i] != str2[i]){
 			return false;
 		}
+		i++;
 	}
 	return str1[i] == str2[i];
 }
