@@ -13,7 +13,7 @@ bool strcmp(char *str1, char *str2);
 void putchar(char ch);
 
 void main(void) {
-	print("Welcome to ")
+	print("Welcome to ");
 	set_text_color("red");
     print("A");
 	set_text_color("cyan");
