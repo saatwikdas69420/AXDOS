@@ -29,6 +29,7 @@ main:
 	mov cl, 0x02
 	mov dl, [BOOT_DISK]
 	int 0x13
+	jc disk_error
 
 
 	mov ah, 0x0
@@ -36,6 +37,19 @@ main:
 	int 0x10
 	jmp start
 
+disk_msg: db "DISK COULD NOT BE READ", 0
+
+disk_error:
+	mov ah, 0x0e
+	mov bx, disk_msg
+	mov al, [bx]
+	jmp print_msg
+	print_msg:
+		int 0x10
+		mov al, [bx]
+		cmp al, 0
+		jne print_msg
+	jmp exit
 
 GDT_Start:
       null_descriptor:
@@ -87,6 +101,8 @@ start_protected_mode:
       mov esp, ebp
       jmp KERNEL_LOCATION
 
+exit:
+	jmp $
 
 times 510-($-$$) db 0
 dw 0xaa55
