@@ -6,14 +6,17 @@ short background_color = 0x0000;
 
 void set_text_color(char *color);
 
+void putchar(char ch);
+
 void print(char *word);
 
 bool strcmp(char *str1, char *str2);
 
-void putchar(char ch);
+void set_background_color(char *color);
 
 void main(void) {
-	print("Welcome to ");
+	print("Welcome to ")
+	set_background_color("white");
 	set_text_color("red");
     print("A");
 	set_text_color("cyan");
@@ -25,6 +28,7 @@ void main(void) {
 	set_text_color("red");
     print("S");
 	set_text_color("white");
+	set_background_color("black");
     print(" Pre-Alpha 1.0!");
 }
 
@@ -35,8 +39,7 @@ void putchar(char ch) {
 
 void print(char *word) {
     for (int i = 0; word[i] != 0; i++) {
-        *video_memory = background_color + text_color + word[i];
-        video_memory++;
+        putchar(word[i]);
     }
 }
 
@@ -73,6 +76,44 @@ void set_text_color(char *color){
 		text_color = 0x0e00;
 	} else if(strcmp(color, "white")){
 		text_color = 0x0f00;
+	} else{
+		print("Invalid Argument: Undefined Color");
+	}
+}
+
+void set_background_color(char *color){
+	if(strcmp(color, "black")){
+		background_color = 0x0000;
+	} else if(strcmp(color, "blue")){
+		background_color = 0x1000;
+	} else if(strcmp(color, "green")){
+		background_color = 0x2000;
+	} else if(strcmp(color, "cyan")){
+		background_color = 0x3000;
+	} else if(strcmp(color, "red")){
+		background_color = 0x4000;
+	} else if(strcmp(color, "magenta")){
+		background_color = 0x5000;
+	} else if(strcmp(color, "brown")){
+		background_color = 0x6000;
+	} else if(strcmp(color, "light gray")){
+		background_color = 0x7000;
+	} else if(strcmp(color, "dark gray")){
+		background_color = 0x8000;
+	} else if(strcmp(color, "light blue")){
+		background_color = 0x9000;
+	} else if(strcmp(color, "light green")){
+		background_color = 0xa000;
+	} else if(strcmp(color, "light cyan")){
+		background_color = 0xb000;
+	} else if(strcmp(color, "light red")){
+		background_color = 0xc000;
+	} else if(strcmp(color, "pink")){
+		background_color = 0xd000;
+	} else if(strcmp(color, "yellow")){
+		background_color = 0xe000;
+	} else if(strcmp(color, "white")){
+		background_color = 0xf000;
 	} else{
 		print("Invalid Argument: Undefined Color");
 	}
